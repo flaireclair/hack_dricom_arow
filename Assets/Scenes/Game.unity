@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1343,6 +1343,8 @@ GameObject:
   - component: {fileID: 1254592654}
   - component: {fileID: 1254592653}
   - component: {fileID: 1254592652}
+  - component: {fileID: 1254592656}
+  - component: {fileID: 1254592655}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1398,6 +1400,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254592655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254592651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c357decceac7222428b6147c3dc9c6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1254592656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254592651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c8fd347b64d404d9efcda18782062e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Fishes: {fileID: 11400000, guid: 649351eae5fdaff4c80d1a1c51778f05, type: 2}
+  _Ships: {fileID: 11400000, guid: 05188b264f507354e995348b45080ef0, type: 2}
+  _Tools: {fileID: 11400000, guid: 6912d28dea20acb45904af590deb7637, type: 2}
 --- !u!1 &1292391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1410468612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2633,7 +2662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1717430720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,7 +3035,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2119660681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e40197febf248e41b3884eaa051138a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2de23b607e354dc4e8a51521ed68614b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money_object: {fileID: 368353593}
+  money_object: {fileID: 368353595}

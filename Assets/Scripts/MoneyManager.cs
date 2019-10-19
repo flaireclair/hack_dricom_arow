@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-
-    public GameObject money_object = null;
+    [SerializeField]
+    private Text money_object;
 
     // Start is called before the first frame update
     void Start()
