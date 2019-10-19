@@ -7,16 +7,15 @@ using System;
 public class Fishing : MonoBehaviour
 {
 
-    private bool is_fishing = false;
-    GameObject time;
-
+    private bool isFishing = false;
+    private bool isHit = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject[] target = GameObject.FindGameObjectsWithTag("River");
+        Debug.Log(Objects.Fishes.Sheet1.ToString());
     }
-
 
     // Update is called once per frame
     void Update()
@@ -26,48 +25,58 @@ public class Fishing : MonoBehaviour
             Vector3 FishingPos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(AppUtil.GetTouchPosition());
             RaycastHit hit = new RaycastHit();
-            if (hit.collider.gameObject.tag == "River")
+            if (!isFishing)
             {
-                is_fishing = true;
-                StartCoroutine("WaitFish");
+                if (Physics.Raycast(ray, out hit, 10.0f) && hit.collider.gameObject.tag == "River")
+                {
+                    isFishing = true;
+                    DateTime now = DateTime.Now;
+                    if (now.Hour >= 6 && now.Hour <= 18)
+                    {
+                        Debug.Log("昼");
+                    }
+                    else
+                    {
+                        Debug.Log("夜");
+                    }
+                    StartCoroutine("WaitFish");
+                }
             }
-        }
-
-        Debug.Log(string.Format("Fishing : {0}", is_fishing));
-
-        if(is_fishing)
-        {
-            DateTime now = DateTime.Now;
-            if(now.Hour >= 6 && now.Hour <= 18)
+            else if(!isHit)
             {
-                Debug.Log("昼");
-            }
-            else
-            {
-                Debug.Log("夜");
-            }
-            
+                StopCoroutine("WaitFish");
+                isFishing = false;
+            }            
         }
     } 
 
     IEnumerator WaitFish()
     {
-        float waitTime = UnityEngine.Random.Range(1.0f, 30.0f);
+        float waitTime = UnityEngine.Random.Range(1.0f, 15.0f);
         Debug.Log(string.Format("Wait : {0}", waitTime));
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("Hit!");
+        isHit = true;
         float fishingTime = Time.deltaTime;
-        yield return new WaitWhile(() => AppUtil.GetTouch() == TouchInfo.Canceled);
+        yield return new WaitWhile(() => AppUtil.GetTouch() == TouchInfo.None);
         if (Time.deltaTime - fishingTime < 2.0f) GetFish(DateTime.Now.Hour);
-        yield return null;
+        Debug.Log(string.Format("Fishing : {0}", isFishing));
+        isFishing = false;
+        isHit = false;
+        yield break;
     }
     
     private void GetFish(int hour)
     {
         Debug.Log("Yeah!");
-        if(hour >= 6 && hour <= 18)
+        bool datetime = (hour >= 6 && hour <= 18);
+        List<FishEntity> FishList = Objects.Fishes.Sheet1.FindAll(n => n.DateTime == datetime);
+        int random = UnityEngine.Random.Range(0, Objects.Fishes.Sheet1.FindAll(n => n.DateTime == datetime).Count);
+        Debug.Log(string.Format("Get Fish : {0}", FishList[random].Name));
+        Player.fish.Add(FishList[random]);
+        foreach(FishEntity hoge in Player.fish)
         {
-            int fishID = UnityEngine.Random.Range(0, Objects.Fishes.Sheet1.Find();
+            Debug.Log(hoge.Name);
         }
     }
-
 }
