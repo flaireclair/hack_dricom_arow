@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static int money;
-    public static Object.Fish[] fish;
-    public static Object.Ship[] ships;
-    public static Object.Tool[] tools;
+    public static Fish[] fish;
+    public static Ship[] ships;
+    public static Tool[] tools;
     Player player;
     // Start is called before the first frame update
     void Start()
