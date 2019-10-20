@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IFhishingable
+public interface IFishingable
 {
     void GoFishing();
 }

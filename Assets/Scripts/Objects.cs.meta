@@ -4,9 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - Fish: {fileID: 11400000, guid: 649351eae5fdaff4c80d1a1c51778f05, type: 2}
-  - Ship: {fileID: 11400000, guid: 05188b264f507354e995348b45080ef0, type: 2}
-  - Tool: {fileID: 11400000, guid: 6912d28dea20acb45904af590deb7637, type: 2}
+  - _Fishes: {fileID: 11400000, guid: 649351eae5fdaff4c80d1a1c51778f05, type: 2}
+  - _Ships: {fileID: 11400000, guid: 05188b264f507354e995348b45080ef0, type: 2}
+  - _Tools: {fileID: 11400000, guid: 6912d28dea20acb45904af590deb7637, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

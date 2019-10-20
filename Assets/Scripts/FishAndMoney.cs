@@ -16,8 +16,17 @@ public class FishAndMoney : MonoBehaviour
 
     }
 
-    public void RetuenMoney(int id)
+    public void RetuenMoney(FishEntity fish, int num)
     {
-        Player.money += id * 100 + 100;
+        for(int i = 0; i < num; i++)
+        {
+            Player.fish.Remove(fish);
+        }
+        Player.money += fish.Money + num;
+        foreach (FishEntity hoge in Player.fish)
+        {
+            Debug.Log(hoge.Name);
+        }
+        Debug.Log(string.Format("所持金 : {0}", Player.money));
     }
 }
