@@ -57,9 +57,9 @@ public class Fishing : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Debug.Log("Hit!");
         isHit = true;
-        float fishingTime = Time.deltaTime;
+        float fishingTime = Time.time;
         yield return new WaitWhile(() => AppUtil.GetTouch() == TouchInfo.None);
-        if (Time.deltaTime - fishingTime < 2.0f) GetFish(DateTime.Now.Hour);
+        if (Time.time - fishingTime < 2.0f) GetFish(DateTime.Now.Hour);
         Debug.Log(string.Format("Fishing : {0}", isFishing));
         isFishing = false;
         isHit = false;

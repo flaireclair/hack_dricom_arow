@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;   
+
+[System.Serializable]
 public class FishEntity
 {
     public int ID;
@@ -23,4 +25,12 @@ public class ToolEntity
     public int BuyingCost;
     public int Luck;
     public string Name;
+}
+
+[System.Serializable]
+public class FishData
+{
+    public FishEntity Fish;
+    public int Num;
+    public Sprite Image;
 }
