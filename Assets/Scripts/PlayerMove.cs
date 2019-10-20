@@ -21,10 +21,37 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(InitializeCoroutine());
+    }
+
+    IEnumerator InitializeCoroutine()
+    {
+        yield return null;
         _locationManager = GetComponent<LocationManager>();
         parentInfo = ParentInfo.GetOrCreateParentInfo("parentInfo", new Vector2Int(1396900000, 359500000)/*(int)_locationManager.Latitude, (int)_locationManager.Longitude)*/, MapUtility.WorldScale);
         gameObject.AddComponent<ArowMapDynamicLoadManager>();
         gameObject.GetComponent<ArowMapDynamicLoadManager>().Initialize(unityChan, new Vector2Int(1396900000, 359500000)); //(int)_locationManager.Latitude, (int)_locationManager.Longitude));
+        yield return new WaitForSeconds(10f);
+        // 高い位置から地面へ Ray を飛ばす。
+        var rayOriginHeight = 1000f;
+        // 取得した経度緯度を AROW の経度緯度に合わせる。
+        var rate = 10000000;
+        var origin = new Vector3(
+            (_locationManager.Longitude * rate - parentInfo.WorldCenter.x)
+            * parentInfo.WorldScale.x,
+            rayOriginHeight,
+            (_locationManager.Latitude * rate - parentInfo.WorldCenter.y)
+            * parentInfo.WorldScale.y
+        );
+        Debug.Log(origin.ToString());
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(origin, Vector3.down, out hitInfo))
+        {
+            // 地面にぶつかったら ユニティちゃんを移動させる。
+            unityChan.transform.position = hitInfo.point;
+        }
+        yield break;
     }
 
     void Update()

@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4204132164990168, guid: bfd5fd291497e4d38931510a59e02e5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4204132164990168, guid: bfd5fd291497e4d38931510a59e02e5e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3041,8 +3041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a3605d596ab4b248a32c78dbf2b8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetDistance: -4
-  CameraPosition: {x: 0, y: 0}
+  TargetDistance: -10
+  CameraPosition: {x: 0, y: 100}
 --- !u!1 &1828099071
 GameObject:
   m_ObjectHideFlags: 0

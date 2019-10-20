@@ -20,14 +20,14 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (AppUtil.GetTouch() == TouchInfo.Began)
         {
             Vector3 FishingPos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(AppUtil.GetTouchPosition());
             RaycastHit hit = new RaycastHit();
             if (!isFishing)
             {
-                if (Physics.Raycast(ray, out hit, 10.0f) && hit.collider.gameObject.tag == "River")
+                if (Physics.Raycast(ray, out hit, 10.0f) && hit.collider.transform.tag == "Ground" && Physics.Raycast(hit.transform.position - new Vector3(0, -5f, 0), Vector3.down, out hit, 1000f) && hit.collider.gameObject.tag == "River")
                 {
                     isFishing = true;
                     DateTime now = DateTime.Now;
