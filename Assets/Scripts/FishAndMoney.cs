@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishAndMoney : MonoBehaviour
 {
@@ -16,13 +17,20 @@ public class FishAndMoney : MonoBehaviour
 
     }
 
-    public void RetuenMoney(FishEntity fish, int num)
+    public void RetuenMoney()
     {
-        for(int i = 0; i < num; i++)
+        Transform canvas = transform.parent.GetChild(5);
+        int getMoney = 0;
+        foreach(FishData fish in StoreFishList.fishDataList)
         {
-            Player.fish.Remove(fish);
+            for(int i = 0; i < int.Parse(canvas.GetChild(i).GetChild(2).GetChild(0).GetChild(2).GetComponent<Text>().text); i++)
+            {
+                Player.fish.Remove(fish.Fish);
+                getMoney += fish.Fish.Money;
+            }
         }
-        Player.money += fish.Money + num;
+
+        Player.money += getMoney;
         foreach (FishEntity hoge in Player.fish)
         {
             Debug.Log(hoge.Name);

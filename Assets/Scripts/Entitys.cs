@@ -7,6 +7,7 @@ public class FishEntity
     public bool DateTime;
     public int Money;
     public string Name;
+    
 }
 
 [System.Serializable]
