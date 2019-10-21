@@ -18,9 +18,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private GameObject unityChan;
     private ParentInfo parentInfo;
+    [SerializeField]
+    private GameObject __null;
+    public static GameObject _null;
 
     void Start()
     {
+        _null = __null;
         StartCoroutine(InitializeCoroutine());
     }
 
@@ -29,9 +33,8 @@ public class PlayerMove : MonoBehaviour
         yield return null;
         _locationManager = GetComponent<LocationManager>();
         parentInfo = ParentInfo.GetOrCreateParentInfo("parentInfo", new Vector2Int(1396900000, 359500000)/*(int)_locationManager.Latitude, (int)_locationManager.Longitude)*/, MapUtility.WorldScale);
-        gameObject.AddComponent<ArowMapDynamicLoadManager>();
-        gameObject.GetComponent<ArowMapDynamicLoadManager>().Initialize(unityChan, new Vector2Int(1396900000, 359500000)); //(int)_locationManager.Latitude, (int)_locationManager.Longitude));
-        yield return new WaitForSeconds(10f);
+        gameObject.AddComponent<ArowMapDynamicLoadManager>().Initialize(unityChan, new Vector2Int(1396900000, 359500000)); //(int)_locationManager.Latitude, (int)_locationManager.Longitude));
+        yield return new WaitUntil(() => { try { if (_null.activeSelf) return true; } catch { } return false; });
         // 高い位置から地面へ Ray を飛ばす。
         var rayOriginHeight = 1000f;
         // 取得した経度緯度を AROW の経度緯度に合わせる。
@@ -43,6 +46,8 @@ public class PlayerMove : MonoBehaviour
             (_locationManager.Latitude * rate - parentInfo.WorldCenter.y)
             * parentInfo.WorldScale.y
         );
+        origin = new Vector3(0, rayOriginHeight, 0);
+
         Debug.Log(origin.ToString());
         RaycastHit hitInfo;
 
@@ -50,6 +55,8 @@ public class PlayerMove : MonoBehaviour
         {
             // 地面にぶつかったら ユニティちゃんを移動させる。
             unityChan.transform.position = hitInfo.point;
+            Debug.Log(unityChan.transform.position.ToString());
+            Debug.Log(hitInfo.point.ToString());
         }
         yield break;
     }
